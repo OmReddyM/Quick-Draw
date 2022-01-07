@@ -1,0 +1,13 @@
+body{
+    background-color:blanchedalmond;
+}
+#score{
+    float:left;
+    font-size: large;
+    margin-left: 10%;
+}
+#timer{
+    float:right;
+    font-size: large;
+    margin-right: 10%;
+}
