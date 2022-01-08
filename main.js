@@ -8,3 +8,41 @@ score = 0;
 toBeDrawn = quick_draw_data_set[Math.floor((Math.random() * quick_draw_data_set.length) + 1)];
 console.log(toBeDrawn);
 document.getElementById("toBeDrawn").innerHTML = "Sketch to be drawn: " + toBeDrawn;
+
+function preload() { classifier = ml5.imageClassifier('DoodleNet'); }
+function setup() {
+    canvas = createCanvas(300, 300);
+    canvas.center();
+    background("white");
+}
+function draw() {
+    check_sketch();
+    if (drawnSketch == toBeDrawn) {
+        answerHolder = "set";
+        score++;
+        console.log(score);
+        document.getElementById("score").innerHTML = "Score: " + score;
+    }
+}
+
+function updateCanvas() {
+    background("white");
+    toBeDrawn = quick_draw_data_set[Math.floor((Math.random() * quick_draw_data_set.length) + 1)];
+    console.log(toBeDrawn);
+    document.getElementById("toBeDrawn").innerHTML = "Sketch to be drawn: " + toBeDrawn;
+}
+
+function check_sketch(){
+    timerCount ++;
+    console.log(timerCount)
+    document.getElementById("timer").innerHTML = "Timer: " + timerCount;
+    if(timerCount > 500){
+        timerCount = 0;
+        timerCheck = "passed"
+    }
+    if(timerCheck === "passed" || answerHolder === "set"){
+        timerCheck = "";
+        answerHolder = "";
+        updateCanvas();
+    }
+}
